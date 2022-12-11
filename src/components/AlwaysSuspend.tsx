@@ -11,11 +11,10 @@ const AlwaysSuspend = (props: SuspensedProps) => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  if (Math.random() < 0.8) {
-    throw sleep(2000);
-  }
-
-  return <div>{children}</div>
+  throw sleep(2000);
+  // if (Math.random() < 0.8) {
+  // }
+  // return <div>{children}</div>
 }
 
 export default AlwaysSuspend
