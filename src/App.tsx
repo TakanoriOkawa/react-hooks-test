@@ -1,15 +1,23 @@
-import About from './components/About';
-import Home from './components/Home';
+import { Suspense, useState } from 'react'
+import AlwaysSuspend from './components/AlwaysSuspend';
 import Loading from './components/Loading';
-import Posts from './components/Posts';
+import './css/Search.css'
 
 function App() {
+  const [isResult, setIsResult] = useState(false);
+
   return (
     <div>
-        <Loading />
-        <About />
-        <Home />
-        <Posts />
+        <Suspense fallback={<Loading />}>
+          <AlwaysSuspend>
+            <div className='search'>
+              <button className="border p-1" onClick={() => setIsResult((prev) => !prev)}>
+                検索ボタン
+              </button>
+              {isResult &&  <p>表示結果...</p>}
+            </div>
+          </AlwaysSuspend>
+        </Suspense>
     </div>
   );
 }
